@@ -1,0 +1,68 @@
+[
+  {
+    "id": -1,
+    "question": "Sorry, we can't help you at this time. Have a nice day!",
+    "validation": false
+  },
+  {
+    "id": 1,
+    "question": "Do you live in California?",
+    "validation": ["yes", "no"],
+    "paths": {
+      "yes": 2,
+      "no": -1
+    }
+  },
+  {
+    "id": 2,
+    "question": "Are you suffering from insomnia?",
+    "validation": ["yes", "no"],
+    "paths": {
+      "yes": 3,
+      "no": -1
+    }
+  },
+  {
+    "id": 3,
+    "question": "What's your email?",
+    "validation": "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
+    "paths": 4,
+    "//comment": "regex from https://emailregex.com"
+  },
+  {
+    "id": 4,
+    "question": "What's your full name? (This information must match your photo ID.)",
+    "validation": true,
+    "paths": 5
+  },
+  {
+    "id": 5,
+    "question": "Please input a password.",
+    "style": "password",
+    "validation": ".{6,}",
+    "paths": 6
+  },
+  {
+    "id": 6,
+    "question": "When were you born? (mm/dd/yyyy)",
+    "validation": "^\\d{1,2}/\\d{1,2}/\\d{4}$",
+    "paths": 7
+  },
+  {
+    "id": 7,
+    "question": "How long have you had trouble sleeping? Past week, past month, or longer?",
+    "validation": ["past week", "past month", "longer"],
+    "paths": 8
+  },
+  {
+    "id": 8,
+    "question": "Is there anything else we should know?",
+    "validation": true,
+    "paths": 9
+  },
+  {
+    "id": 9,
+    "question": "Thank you so much! You will be connected to a physician shortly",
+    "validation": false
+  }
+]

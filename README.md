@@ -3,7 +3,7 @@
 ## Introduction
 
 This is a sample Telehealth app that walks users through a set of predefined onboarding questions.
-The objective of this project is to demonstrate knowledge of best practices, code organization and app styling using **Javascript**, **React Native**, and **Redux**.
+The objective of this project is to demonstrate knowledge of **Javascript**, **React Native**, and **Redux** best practices, code organization and app styling.
 
 ## How it works
 

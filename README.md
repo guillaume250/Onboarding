@@ -1,4 +1,4 @@
-# OnBoarding App
+# Onboarding App
 
 ## Introduction
 
@@ -7,10 +7,6 @@ The objective of this project is to demonstrate knowledge of **Javascript**, **R
 
 ## How it works
 
-All onboarding questions are predefined in [a provided json file](https://github.com/guillaume250/Onboarding/blob/master/data/questions.json). An onboarding question consists of an object that has an `id`, `validation`, and `question` properties. Some onboarding questions have a `path` property that represents the `id` of the following question.
+All onboarding questions are predefined in [a provided json file](https://github.com/guillaume250/Onboarding/blob/master/data/questions.json). An onboarding question consists of an object that has an `id`, `validation`, and `question` properties.
 
-When a question doesn't have
-
-### Properties
-
--
+The onboarding flow starts with the question with an `id` of `1`. The `validation` property indicates user input validations for that particular question. Some questions have a `path` property that represents the `id` of the following onboarding question. A question with no `path` property is a final question.

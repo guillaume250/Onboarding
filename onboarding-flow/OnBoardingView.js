@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Header, ChatBox, TextInput} from '@onboarding/ui-kit';
+import {Header, ChatBox} from '@onboarding/ui-kit';
 import {useData} from '@onboarding/hooks';
 import {connect} from 'react-redux';
 import {UserInputView} from './';

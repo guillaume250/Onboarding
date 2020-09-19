@@ -1,7 +1,4 @@
-import React, {useState} from 'react';
-import {connect} from 'react-redux';
-import {updatePath as uP} from '@onboarding/redux';
-
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,153 +7,42 @@ import {
   Platform,
   TouchableOpacity,
   View,
-  Picker,
 } from 'react-native';
-import {TimeLine} from '@onboarding/flow';
 
-import {
-  identifiers,
-  validateEmail,
-  validateDate,
-  validatePassword,
-  validatePicker,
-  validateDefault,
-} from '@onboarding/utils';
-const TextInput = ({submit, probe, updatePath, timeline, tl}) => {
-  const {validation, paths, id} = probe;
-  const {isEmail, isDate, isPassword, isPicker} = identifiers(validation);
-  const [selectedValue, setSelectedValue] = useState(null);
-  const [value, onChangeText] = useState(null);
-  const [vMessage, setVMessage] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const handleSubmit = (val, path) => {
-    const validate = isEmail
-      ? validateEmail(val)
-      : isDate
-      ? validateDate(val)
-      : isPassword
-      ? validatePassword(val)
-      : isPicker
-      ? validatePicker(val)
-      : validateDefault(val);
-
-    if (!val) {
-      path ? updatePath({currentPath: path}) : setModalVisible(true);
-    } else if (!validate?.valid) {
-      setVMessage(validate.message);
-    } else {
-      const answer = {id: id, answer: val};
-      setVMessage(null);
-      onChangeText(null);
-      updatePath({
-        currentPath: paths,
-        answers: {id: id, timeline: timeline.push(answer)},
-      });
-    }
-  };
-
-  if (!validation) {
-    switch (id) {
-      case -1:
-        return (
+const TextInput = ({
+  value,
+  onChangeText,
+  isPassword,
+  isEmail,
+  handleSubmit,
+  submit,
+  vMessage,
+}) => {
+  return (
+    <>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <View style={styles.footer}>
+          <TxtInput
+            style={styles.textInput}
+            placeholder="Type here..."
+            onChangeText={(text) => onChangeText(text)}
+            value={value}
+            secureTextEntry={isPassword}
+            keyboardType={isEmail ? 'email-address' : 'default'}
+          />
           <TouchableOpacity
-            style={styles.singleButton}
-            onPress={() => handleSubmit(validation, 1)}>
-            <Text style={styles.buttonText}>{'Start new Chat'}</Text>
+            style={styles.button}
+            onPress={() => handleSubmit(value)}>
+            <Text style={styles.buttonText}>{submit}</Text>
           </TouchableOpacity>
-        );
-
-      default:
-        return (
-          <>
-            <View style={styles.duoButtons}>
-              <TouchableOpacity
-                style={styles.duoButton}
-                onPress={() => handleSubmit(validation, 1)}>
-                <Text style={styles.buttonText}>{'Start new Chat'}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.duoButton}
-                onPress={() => handleSubmit(validation, null)}>
-                <Text style={styles.buttonText}>{'Review Chat'}</Text>
-              </TouchableOpacity>
-            </View>
-            <TimeLine
-              modalVisible={modalVisible}
-              setModalVisible={setModalVisible}
-            />
-          </>
-        );
-    }
-  } else if (validation.toString() === 'yes,no') {
-    return (
-      <View style={styles.duoButtons}>
-        <TouchableOpacity
-          style={styles.duoButton}
-          onPress={() => {
-            const answer = {id: id, answer: 'yes'};
-            updatePath({
-              currentPath: paths?.yes,
-              timeline: [...tl, answer],
-            });
-          }}>
-          <Text style={styles.buttonText}>{'yes'}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.duoButton}
-          onPress={() => updatePath({currentPath: paths?.no})}>
-          <Text style={styles.buttonText}>{'no'}</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  } else if (isPicker) {
-    return (
-      <View style={styles.pickerView}>
-        <Picker
-          selectedValue={selectedValue}
-          style={styles.picker}
-          onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}>
-          {validation.map((period) => (
-            <Picker.Item key={period} label={period} value={period} />
-          ))}
-        </Picker>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => handleSubmit(selectedValue)}>
-          <Text style={styles.buttonText}>{submit}</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  } else if (!!validation || isEmail || isDate || isPassword) {
-    return (
-      <>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-          <View style={styles.footer}>
-            <TxtInput
-              style={styles.textInput}
-              placeholder="Type here..."
-              onChangeText={(text) => onChangeText(text)}
-              value={value}
-              secureTextEntry={isPassword}
-              keyboardType={isEmail ? 'email-address' : 'default'}
-            />
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => handleSubmit(value)}>
-              <Text style={styles.buttonText}>{submit}</Text>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAvoidingView>
-        <View>
-          {!!vMessage && <Text style={styles.invalid}>{vMessage}</Text>}
         </View>
-      </>
-    );
-  } else {
-    return null;
-  }
+      </KeyboardAvoidingView>
+      <View>
+        {!!vMessage && <Text style={styles.invalid}>{vMessage}</Text>}
+      </View>
+    </>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -238,13 +124,4 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
 });
-
-function mapDispatchToProps(dispatch) {
-  return {
-    updatePath: (path) => dispatch(uP(path)),
-  };
-}
-const mapStateToProps = (state) => {
-  return {timeline: state.timeline};
-};
-export default connect(mapStateToProps, mapDispatchToProps)(TextInput);
+export default TextInput;

@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {Header, ChatBox} from '@onboarding/ui-kit';
 import {useData} from '@onboarding/hooks';
 import {connect} from 'react-redux';
-import {UserInputView} from './';
+import UserInputView from './UserInputView';
 const OnBoardingView = ({currentPath, timeline}) => {
   const {data, probe} = useData();
   const [step, setStep] = useState(1);

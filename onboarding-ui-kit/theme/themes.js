@@ -1,4 +1,4 @@
-import {colors} from './';
+import colors from './colors';
 const theme = {
   primaryButton: colors.tone2,
   primaryButtonText: colors.snow,

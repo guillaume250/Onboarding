@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {updatePath as uP} from '@onboarding/redux';
 import {DuoButtons, Button, Picker, TextInput} from '@onboarding/ui-kit';
-import {TimeLine} from './';
+import TimeLine from './TimeLine';
 
 import {
   identifiers,

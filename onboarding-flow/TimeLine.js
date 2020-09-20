@@ -12,7 +12,6 @@ import {
   Image,
 } from 'react-native';
 import {useData} from '@onboarding/hooks';
-import {ConnectDoctor} from './';
 const TimeLine = ({modalVisible, setModalVisible, timeline}) => {
   const {data, agent} = useData();
   const probes = data.slice(1);
@@ -50,27 +49,15 @@ const TimeLine = ({modalVisible, setModalVisible, timeline}) => {
               </View>
             ))}
           </ScrollView>
-          <View style={styles.duoButtons}>
+          <View>
             <TouchableOpacity
-              style={styles.duoButton}
-              onPress={() => {
-                setModalVisible(false);
-                setdoctorModal(true);
-              }}>
-              <Text style={styles.buttonText}>{'Summon Doctor'}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.duoButton}
+              style={styles.singleButton}
               onPress={() => setModalVisible(false)}>
               <Text style={styles.buttonText}>{'Close Timeline'}</Text>
             </TouchableOpacity>
           </View>
         </SafeAreaView>
       </Modal>
-      <ConnectDoctor
-        modalVisible={doctorModal}
-        setModalVisible={setdoctorModal}
-      />
     </>
   );
 };

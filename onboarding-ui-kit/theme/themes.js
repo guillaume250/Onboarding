@@ -6,6 +6,7 @@ const theme = {
   cardBg: colors.tone4,
   //text colors
   snow: colors.snow,
+  lite: colors.lite,
   light: colors.light,
   //Buttons
   primaryButton: colors.tone2,

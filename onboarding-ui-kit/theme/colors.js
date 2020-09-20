@@ -8,8 +8,9 @@ export const colors = {
     tone2: '#00948B',
     tone3: '#D9E5E6',
     tone4: '#E6F0F0',
-    // Other colors
+    //Tones of white
     snow: '#FFFFFF',
+    lite: '#d5d9df',
     light: '#576272',
     night: '#34363D',
   },

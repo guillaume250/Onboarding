@@ -7,3 +7,4 @@ export {
   Button,
   Picker,
 } from './components';
+export {colors, theme} from './theme';

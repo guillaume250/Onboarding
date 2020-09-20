@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {theme} from '../theme';
 
 const DuoButtons = ({leftButton, rightButton}) => {
   return (
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   duoButton: {
-    backgroundColor: '#4F93FE',
+    backgroundColor: theme.primaryButton,
     height: 40,
     width: 150,
     padding: 10,
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     margin: 20,
     borderRadius: 10,
   },
-  buttonText: {color: 'white'},
+  buttonText: {color: theme.primaryButtonText},
 });
 
 export default DuoButtons;

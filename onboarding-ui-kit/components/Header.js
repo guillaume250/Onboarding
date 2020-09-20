@@ -1,10 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
+import {theme} from '../theme';
 const OnBoardingView = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>onboarding OnBoarding App</Text>
+      <Text style={styles.text}>Telehealth App</Text>
     </View>
   );
 };
@@ -12,13 +13,20 @@ const OnBoardingView = () => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    backgroundColor: '#ECF5F6',
-    padding: 10,
-    paddingTop: 50,
-    paddingBottom: 50,
+    backgroundColor: theme.primeBg,
+    padding: 20,
+    marginBottom: 50,
+    shadowColor: theme.light,
+    shadowOpacity: 0.4,
+    shadowOffset: {
+      height: 5,
+    },
   },
   text: {
     alignSelf: 'center',
+    color: theme.snow,
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 });
 

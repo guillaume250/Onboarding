@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   duoButtons: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   duoButton: {
     height: 40,

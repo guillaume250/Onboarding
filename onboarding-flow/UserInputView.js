@@ -1,7 +1,13 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {updatePath as uP} from '@onboarding/redux';
-import {DuoButtons, Button, Picker, TextInput} from '@onboarding/ui-kit';
+import {
+  DuoButtons,
+  Button,
+  Picker,
+  TextInput,
+  FadeInView,
+} from '@onboarding/ui-kit';
 import TimeLine from './TimeLine';
 
 import {
@@ -77,21 +83,23 @@ const UserInputView = ({probe, updatePath, timeline, tl}) => {
     }
   } else if (validation.toString() === 'yes,no') {
     return (
-      <DuoButtons
-        leftButton={{
-          text: 'No',
-          onPress: () => updatePath({currentPath: paths?.no}),
-        }}
-        rightButton={{
-          text: 'Yes',
-          onPress: () => {
-            updatePath({
-              currentPath: paths?.yes,
-              timeline: [...tl, {id: id, question: probe, answer: 'Yes'}],
-            });
-          },
-        }}
-      />
+      <FadeInView delay={2000}>
+        <DuoButtons
+          leftButton={{
+            text: 'No',
+            onPress: () => updatePath({currentPath: paths?.no}),
+          }}
+          rightButton={{
+            text: 'Yes',
+            onPress: () => {
+              updatePath({
+                currentPath: paths?.yes,
+                timeline: [...tl, {id: id, question: probe, answer: 'Yes'}],
+              });
+            },
+          }}
+        />
+      </FadeInView>
     );
   } else if (isPicker) {
     return <Picker handleSubmit={handleSubmit} validation={validation} />;

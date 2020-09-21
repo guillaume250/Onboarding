@@ -3,6 +3,8 @@ import {StyleSheet, Text, View, Image, Platform} from 'react-native';
 import {theme} from '../theme';
 
 import Card from './Card';
+import FadeInView from './FadeInView';
+
 const ChatBox = ({probe, agent}) => {
   const {question} = probe;
   const {names, src} = agent;
@@ -16,9 +18,9 @@ const ChatBox = ({probe, agent}) => {
           }>{`${names.firstName} ${names.lastName}`}</Text>
         <Image style={styles.avatar} source={src} />
       </View>
-      <View style={styles.onboarding}>
+      <FadeInView style={styles.onboarding} trigger={probe}>
         <Text style={styles.onboardingText}>{question}</Text>
-      </View>
+      </FadeInView>
     </Card>
   );
 };

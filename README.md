@@ -2,10 +2,14 @@
 
 ## Introduction
 
-This is a sample Telehealth app that walks users through a set of predefined onboarding questions.
-The objective of this project is to demonstrate knowledge of **Javascript**, **React Native**, and **Redux** best practices, code organization and app styling.
+This is a sample Telehealth chat app that walks users through a set of predefined onboarding questions.
+The objective of this project is to demonstrate knowledge of **Javascript**, **React Native**, and **Redux** app design best practices, code organization and styling.
 
 ## How it works
+
+The app asks users a set of questions, temporarily stores their responses, then displays the full conversation (question/responses) at the end. There are different conversation outcomes based on a user responses.
+
+## Dev Instructions
 
 All onboarding questions are predefined in [a provided json file](https://github.com/guillaume250/Onboarding/blob/master/data/questions.json). An onboarding question consists of an object that has an `id`, `validation`, and `question` properties.
 

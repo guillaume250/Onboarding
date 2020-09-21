@@ -80,6 +80,10 @@ const UserInputView = ({submit, probe, updatePath, timeline, tl}) => {
     return (
       <DuoButtons
         leftButton={{
+          text: 'No',
+          onPress: () => updatePath({currentPath: paths?.no}),
+        }}
+        rightButton={{
           text: 'Yes',
           onPress: () => {
             const answer = {id: id, answer: 'yes'};
@@ -88,10 +92,6 @@ const UserInputView = ({submit, probe, updatePath, timeline, tl}) => {
               timeline: [...tl, answer],
             });
           },
-        }}
-        rightButton={{
-          text: 'No',
-          onPress: () => updatePath({currentPath: paths?.no}),
         }}
       />
     );

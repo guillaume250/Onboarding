@@ -1,11 +1,13 @@
 import React from 'react';
-import {useData} from '@onboarding/hooks';
 import {StyleSheet, Text, View, Image, Platform} from 'react-native';
+import {useData} from '@onboarding/hooks';
+import {theme} from '../theme';
+
 import Card from './Card';
 const ChatBox = ({probe}) => {
   const {question} = probe;
   const {agent} = useData();
-  const {names, avatar} = agent;
+  const {names, avatar, src} = agent;
 
   return (
     <Card>
@@ -14,7 +16,7 @@ const ChatBox = ({probe}) => {
           style={
             styles.agentNames
           }>{`${names.firstName} ${names.lastName}`}</Text>
-        <Image style={styles.avatar} source={{uri: avatar}} />
+        <Image style={styles.avatar} source={src} />
       </View>
       <View style={styles.onboarding}>
         <Text style={styles.onboardingText}>{question}</Text>
@@ -32,12 +34,12 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingBottom: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#576272',
+    borderBottomColor: theme.lite,
   },
   agentNames: {
     alignSelf: 'center',
     marginRight: 10,
-    color: '#576272',
+    color: theme.light,
   },
   avatar: {
     width: 50,
@@ -53,6 +55,7 @@ const styles = StyleSheet.create({
   onboardingText: {
     fontFamily: Platform.OS === 'ios' ? 'Arial' : 'Roboto',
     fontSize: 24,
+    color: theme.secondaryButtonText,
   },
 });
 

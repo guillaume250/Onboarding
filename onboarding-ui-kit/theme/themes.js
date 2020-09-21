@@ -5,6 +5,7 @@ const theme = {
   primeBg: colors.tone2,
   secondBg: colors.tone2_5,
   cardBg: colors.tone4,
+  whiteBg: colors.white,
   //text colors
   snow: colors.snow,
   lite: colors.lite,

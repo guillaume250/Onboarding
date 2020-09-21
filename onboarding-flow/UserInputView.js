@@ -83,7 +83,7 @@ const UserInputView = ({probe, updatePath, timeline, tl}) => {
     }
   } else if (validation.toString() === 'yes,no') {
     return (
-      <FadeInView delay={2000}>
+      <FadeInView delay={1000}>
         <DuoButtons
           leftButton={{
             text: 'No',

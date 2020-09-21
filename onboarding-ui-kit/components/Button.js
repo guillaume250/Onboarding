@@ -1,28 +1,19 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {theme} from '../theme';
 
-const Button = ({onPress, text}) => {
+const Button = ({onPress, text, ...props}) => {
   return (
-    <TouchableOpacity style={styles.singleButton} onPress={onPress}>
+    <TouchableOpacity style={styles.singleButton} onPress={onPress} {...props}>
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  button: {
-    width: '100%',
-    backgroundColor: '#ECF5F6',
-    padding: 10,
-    paddingTop: 50,
-    paddingBottom: 50,
-  },
-  text: {
-    alignSelf: 'center',
-  },
-  buttonText: {color: 'white'},
+  buttonText: {color: theme.snow},
   singleButton: {
-    backgroundColor: '#4F93FE',
+    backgroundColor: theme.primaryButton,
     height: 40,
     width: 200,
     padding: 10,

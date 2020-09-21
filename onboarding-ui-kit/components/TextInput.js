@@ -5,9 +5,12 @@ import {
   TextInput as TxtInput,
   KeyboardAvoidingView,
   Platform,
-  TouchableOpacity,
+  Pressable,
   View,
+  Keyboard,
 } from 'react-native';
+import Button from './Button';
+import {theme} from '../theme';
 
 const TextInput = ({
   value,
@@ -17,42 +20,43 @@ const TextInput = ({
   handleSubmit,
   submit,
   vMessage,
+  TouchableOpacity,
 }) => {
   return (
-    <>
+    <Pressable onPress={() => Keyboard.dismiss()}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <View style={styles.footer}>
+        <View style={styles.container}>
           <TxtInput
             style={styles.textInput}
             placeholder="Type here..."
+            placeholderTextColor={theme.primeBg}
             onChangeText={(text) => onChangeText(text)}
             value={value}
             secureTextEntry={isPassword}
             keyboardType={isEmail ? 'email-address' : 'default'}
           />
-          <TouchableOpacity
+          <Button
             style={styles.button}
-            onPress={() => handleSubmit(value)}>
-            <Text style={styles.buttonText}>{submit}</Text>
-          </TouchableOpacity>
+            onPress={() => handleSubmit(value)}
+            text={submit}
+          />
+        </View>
+        <View onPress={() => console.log('KAKA')}>
+          {!!vMessage && <Text style={styles.invalid}>{vMessage}</Text>}
         </View>
       </KeyboardAvoidingView>
-      <View>
-        {!!vMessage && <Text style={styles.invalid}>{vMessage}</Text>}
-      </View>
-    </>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
-  },
-  footer: {
     flex: 1,
     flexDirection: 'row',
-    padding: 20,
+    justifyContent: 'space-between',
+    padding: 10,
+    margin: 10,
   },
   textInput: {
     width: '70%',
@@ -61,28 +65,22 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 1,
     borderRadius: 5,
-    borderColor: '#E0E8F1',
+    borderColor: theme.secondBg,
     backgroundColor: 'white',
+    color: theme.night,
   },
-  yesno: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: 'white',
+
+  invalid: {
+    color: theme.error,
+    alignSelf: 'auto',
+    margin: 20,
+    paddingTop: 20,
   },
-  yesnoButtons: {
-    backgroundColor: '#4F93FE',
-    height: 40,
-    width: 100,
-    padding: 10,
-    marginRight: 20,
-    borderRadius: 10,
-  },
-  invalid: {color: 'red', alignSelf: 'auto', margin: 20, paddingTop: 20},
   button: {
-    backgroundColor: '#4F93FE',
+    backgroundColor: theme.primeBg,
     height: 40,
     padding: 10,
-    borderRadius: 10,
+    borderRadius: 5,
   },
   pickerView: {
     flexDirection: 'row',
@@ -90,38 +88,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 10,
   },
-  picker: {
-    marginRight: 20,
-    height: 150,
-    width: 200,
-    top: Platform.OS === 'ios' ? -32 : 0,
-  },
-  duoButtons: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  duoButton: {
-    backgroundColor: '#4F93FE',
-    height: 40,
-    width: 150,
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 20,
-    borderRadius: 10,
-  },
   buttonText: {color: 'white'},
-  singleButton: {
-    backgroundColor: '#4F93FE',
-    height: 40,
-    width: 200,
-    padding: 10,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 20,
-    borderRadius: 10,
-  },
 });
+
 export default TextInput;

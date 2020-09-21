@@ -6,6 +6,7 @@ export const colors = {
     // Tones of Green-Turqouise
     tone1: '#004D4A',
     tone2: '#00948B',
+    tone2_5: '#57b5af',
     tone3: '#D9E5E6',
     tone4: '#E6F0F0',
     //Tones of white
@@ -13,6 +14,9 @@ export const colors = {
     lite: '#d5d9df',
     light: '#576272',
     night: '#34363D',
+
+    //Warnings
+    error: '#db3535',
   },
   dark: {
     // Tones of Green-Turqouise

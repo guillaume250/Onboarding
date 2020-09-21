@@ -6,5 +6,6 @@ export {
   DuoButtons,
   Button,
   Picker,
+  Container,
 } from './components';
 export {colors, theme} from './theme';

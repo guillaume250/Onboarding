@@ -18,7 +18,7 @@ const UserInputView = ({submit, probe, updatePath, timeline, tl}) => {
   const {isEmail, isDate, isPassword, isPicker} = identifiers(validation);
   const [value, onChangeText] = useState(null);
   const [vMessage, setVMessage] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
 
   const handleSubmit = (val, path) => {
     const validate = isEmail

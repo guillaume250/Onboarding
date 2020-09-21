@@ -6,14 +6,14 @@ const DuoButtons = ({leftButton, rightButton}) => {
   return (
     <View style={styles.duoButtons}>
       <TouchableOpacity
-        style={[styles.duoButton, styles.primaryButton]}
+        style={[styles.duoButton, styles.secondaryButton]}
         onPress={leftButton.onPress}>
-        <Text style={styles.primaryButton}>{leftButton.text}</Text>
+        <Text style={styles.secondaryButton}>{leftButton.text}</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.duoButton, styles.secondaryButton]}
+        style={[styles.duoButton, styles.primaryButton]}
         onPress={rightButton.onPress}>
-        <Text style={styles.secondaryButton}>{rightButton.text}</Text>
+        <Text style={styles.primaryButton}>{rightButton.text}</Text>
       </TouchableOpacity>
     </View>
   );

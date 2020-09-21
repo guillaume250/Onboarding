@@ -18,7 +18,7 @@ const TextInput = ({
   isPassword,
   isEmail,
   handleSubmit,
-  submit,
+
   vMessage,
   TouchableOpacity,
 }) => {
@@ -39,7 +39,7 @@ const TextInput = ({
           <Button
             style={styles.button}
             onPress={() => handleSubmit(value)}
-            text={submit}
+            text={'Continue'}
           />
         </View>
         <View onPress={() => console.log('KAKA')}>

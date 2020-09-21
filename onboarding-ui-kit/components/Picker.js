@@ -5,7 +5,7 @@ import {Picker as Pk} from '@react-native-community/picker';
 import Button from './Button';
 import {theme} from '../theme';
 
-const Picker = ({validation, handleSubmit, submit}) => {
+const Picker = ({validation, handleSubmit}) => {
   const [selectedValue, setSelectedValue] = useState(null);
 
   return (
@@ -22,7 +22,7 @@ const Picker = ({validation, handleSubmit, submit}) => {
       <Button
         style={styles.button}
         onPress={() => handleSubmit(selectedValue)}
-        text={submit}
+        text={'Continue'}
       />
     </View>
   );

@@ -7,7 +7,7 @@ import Card from './Card';
 const ChatBox = ({probe}) => {
   const {question} = probe;
   const {agent} = useData();
-  const {names, avatar, src} = agent;
+  const {names, src} = agent;
 
   return (
     <Card>

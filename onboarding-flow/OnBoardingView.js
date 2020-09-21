@@ -5,11 +5,11 @@ import {useData} from '@onboarding/hooks';
 import UserInputView from './UserInputView';
 
 const OnBoardingView = ({currentPath, timeline}) => {
-  const {probe} = useData();
+  const {probe, agent} = useData();
   return (
     <Container>
       <Header />
-      <ChatBox probe={probe(currentPath)} />
+      <ChatBox probe={probe(currentPath)} agent={agent} />
       <UserInputView probe={probe(currentPath)} tl={timeline} />
     </Container>
   );

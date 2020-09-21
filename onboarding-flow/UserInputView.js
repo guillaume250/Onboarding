@@ -13,12 +13,12 @@ import {
   validateDefault,
 } from '@onboarding/utils';
 
-const UserInputView = ({submit, probe, updatePath, timeline, tl}) => {
+const UserInputView = ({probe, updatePath, timeline, tl}) => {
   const {validation, paths, id} = probe;
   const {isEmail, isDate, isPassword, isPicker} = identifiers(validation);
   const [value, onChangeText] = useState(null);
-  const [vMessage, setVMessage] = useState(null);
-  const [modalVisible, setModalVisible] = useState(true);
+  const [validationMessage, setValidationMessage] = useState(null);
+  const [showTimeline, setShowTimeline] = useState(true);
 
   const handleSubmit = (val, path) => {
     const validate = isEmail
@@ -32,16 +32,15 @@ const UserInputView = ({submit, probe, updatePath, timeline, tl}) => {
       : validateDefault(val);
 
     if (!val) {
-      path ? updatePath({currentPath: path}) : setModalVisible(true);
+      path ? updatePath({currentPath: path}) : setShowTimeline(true);
     } else if (!validate?.valid) {
-      setVMessage(validate.message);
+      setValidationMessage(validate.message);
     } else {
-      const answer = {id: id, answer: val};
-      setVMessage(null);
+      setValidationMessage(null);
       onChangeText(null);
       updatePath({
         currentPath: paths,
-        answers: {id: id, timeline: timeline.push(answer)},
+        timeline: [...tl, {id: id, question: probe, answer: val}],
       });
     }
   };
@@ -51,7 +50,7 @@ const UserInputView = ({submit, probe, updatePath, timeline, tl}) => {
       case -1:
         return (
           <Button
-            onPress={() => handleSubmit(validation, 1)}
+            onPress={() => handleSubmit(null, 1)}
             text={'Start new Chat'}
           />
         );
@@ -62,16 +61,16 @@ const UserInputView = ({submit, probe, updatePath, timeline, tl}) => {
             <DuoButtons
               leftButton={{
                 text: 'Start new Chat',
-                onPress: () => handleSubmit(validation, 1),
+                onPress: () => handleSubmit(null, 1),
               }}
               rightButton={{
                 text: 'Review Chat',
-                onPress: () => handleSubmit(validation, null),
+                onPress: () => handleSubmit(null, null),
               }}
             />
             <TimeLine
-              modalVisible={modalVisible}
-              setModalVisible={setModalVisible}
+              modalVisible={showTimeline}
+              setModalVisible={setShowTimeline}
             />
           </>
         );
@@ -86,23 +85,16 @@ const UserInputView = ({submit, probe, updatePath, timeline, tl}) => {
         rightButton={{
           text: 'Yes',
           onPress: () => {
-            const answer = {id: id, answer: 'yes'};
             updatePath({
               currentPath: paths?.yes,
-              timeline: [...tl, answer],
+              timeline: [...tl, {id: id, question: probe, answer: 'Yes'}],
             });
           },
         }}
       />
     );
   } else if (isPicker) {
-    return (
-      <Picker
-        handleSubmit={handleSubmit}
-        validation={validation}
-        submit={submit}
-      />
-    );
+    return <Picker handleSubmit={handleSubmit} validation={validation} />;
   } else if (!!validation || isEmail || isDate || isPassword) {
     return (
       <TextInput
@@ -111,9 +103,8 @@ const UserInputView = ({submit, probe, updatePath, timeline, tl}) => {
         isPassword={isPassword}
         isEmail={isEmail}
         handleSubmit={handleSubmit}
-        submit={submit}
-        vMessage={vMessage}
-        setVMessage={setVMessage}
+        vMessage={validationMessage}
+        setValidationMessage={setValidationMessage}
       />
     );
   } else {

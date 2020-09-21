@@ -1,12 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, Platform} from 'react-native';
-import {useData} from '@onboarding/hooks';
 import {theme} from '../theme';
 
 import Card from './Card';
-const ChatBox = ({probe}) => {
+const ChatBox = ({probe, agent}) => {
   const {question} = probe;
-  const {agent} = useData();
   const {names, src} = agent;
 
   return (

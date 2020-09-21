@@ -34,18 +34,25 @@ const TimeLine = ({modalVisible, setModalVisible, timeline}) => {
           <Image style={styles.avatar} source={src} />
         </View>
         <ScrollView style={styles.container}>
-          {probes.map((probe, i) => (
-            <View key={probe.id} style={styles.probe}>
-              <View style={styles.onboarding}>
-                <Text style={styles.agentText}>{names.firstName}:</Text>
-                <Text style={styles.onboardingText}>{probe.question}</Text>
+          {probes.map((probe, i) => {
+            const {answer} = timeline[i] || false;
+            return (
+              <View key={probe.id} style={styles.probe}>
+                <View style={styles.onboarding}>
+                  <Text style={styles.agentText}>{names.firstName}:</Text>
+                  <Text style={styles.onboardingText}>{probe.question}</Text>
+                </View>
+                {answer && (
+                  <View style={styles.onboarding}>
+                    <Text style={styles.userText}>{'You'}:</Text>
+                    <Text style={styles.onboardingText}>
+                      {timeline[i]?.answer}
+                    </Text>
+                  </View>
+                )}
               </View>
-              <View style={styles.onboarding}>
-                <Text style={styles.userText}>{'You'}:</Text>
-                <Text style={styles.onboardingText}>{timeline[i]?.answer}</Text>
-              </View>
-            </View>
-          ))}
+            );
+          })}
         </ScrollView>
         <View>
           <TouchableOpacity
@@ -87,6 +94,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   onboarding: {margin: 10},
+  probe: {paddingBottom: 20},
   agentText: {color: theme.primeBg},
   userText: {color: theme.night},
   onboardingText: {color: theme.light},
